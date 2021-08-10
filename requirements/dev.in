@@ -1,0 +1,7 @@
+-c prod.txt
+pytest
+bandit
+wandb
+jupyterlab
+notebook
+scikit-learn
