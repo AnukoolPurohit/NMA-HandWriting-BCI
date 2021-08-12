@@ -5,3 +5,4 @@ wandb
 jupyterlab
 notebook
 scikit-learn
+jedi==0.17.2
