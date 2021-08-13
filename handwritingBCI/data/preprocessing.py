@@ -15,3 +15,4 @@ class LabelEncoder:
 
     def __call__(self, label):
         return self.process(label)
+
