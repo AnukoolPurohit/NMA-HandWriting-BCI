@@ -1,3 +1,4 @@
+import torch
 from torch.utils.data import Dataset
 
 
@@ -20,6 +21,9 @@ class NeuroDataset(Dataset):
             data = self.transform(data)
         if self.target_transform:
             label = self.target_transform(label)
+        if isinstance(data, torch.Tensor):
+            if len(data.shape) == 2:
+                data = data.unsqueeze(0)
         return data, label
 
 
