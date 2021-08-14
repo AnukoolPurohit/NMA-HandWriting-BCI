@@ -64,6 +64,7 @@ numpy==1.19.5
     #   scipy
     #   tensorboard
     #   torchmetrics
+    #   torchvision
 oauthlib==3.1.1
     # via requests-oauthlib
 packaging==21.0
@@ -73,7 +74,9 @@ packaging==21.0
 pathlib==1.0.1
     # via -r requirements/prod.in
 pillow==8.3.1
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   torchvision
 protobuf==3.17.3
     # via tensorboard
 pyasn1==0.4.8
@@ -123,8 +126,11 @@ torch==1.9.0
     # via
     #   pytorch-lightning
     #   torchmetrics
+    #   torchvision
 torchmetrics==0.4.1
     # via pytorch-lightning
+torchvision==0.10.0
+    # via -r requirements/prod.in
 tqdm==4.62.0
     # via pytorch-lightning
 typing-extensions==3.10.0.0

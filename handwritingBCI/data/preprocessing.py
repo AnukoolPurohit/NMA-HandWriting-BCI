@@ -12,11 +12,6 @@ class LabelEncoder:
         self.index_to_label = list(self.label_to_index.keys())
         return
 
-    def generate_category_index(self):
-        for index, category in enumerate(self.categories):
-            self.label_to_index[category] = index
-        return
-
     def set_unique_labels_as_categories(self):
         self.categories = list(set(self.categories))
         return
@@ -24,6 +19,11 @@ class LabelEncoder:
     def sort_categories(self):
         self.categories = sorted(self.categories)
         self.categories = sorted(self.categories, key=len)
+        return
+
+    def generate_category_index(self):
+        for index, category in enumerate(self.categories):
+            self.label_to_index[category] = index
         return
 
     def process(self, label):

@@ -1,4 +1,6 @@
 from torch.utils.data import Dataset
+from handwritingBCI.data.utils.files import get_dataset
+from handwritingBCI.data.utils.transforms import get_cnn_transforms
 
 
 class NeuroDataset(Dataset):
@@ -29,3 +31,9 @@ class NeuroDataset(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
         return data, label
+
+    @classmethod
+    def from_path(cls, path, get_transforms=get_cnn_transforms):
+        data, labels = get_dataset(path)
+        transforms, target_transform = get_transforms(labels)
+        return cls(data, labels, transforms, target_transform)
