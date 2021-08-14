@@ -1,14 +1,17 @@
-import torch
 from torch.utils.data import Dataset
 
 
 class NeuroDataset(Dataset):
-    def __init__(self, data, target, transform=None, target_transform=None):
+    def __init__(self, data, target,
+                 transform=None,
+                 target_transform=None):
+
         self.data = data
         self.target = target
-        assert data.shape[0] == len(target)
         self.transform = transform
         self.target_transform = target_transform
+
+        assert data.shape[0] == len(target)
         return
 
     def __len__(self):
@@ -17,15 +20,12 @@ class NeuroDataset(Dataset):
     def __getitem__(self, index):
         data = self.data[index]
         label = self.target[index]
+        data, label = self.apply_transforms(data, label)
+        return data, label
+
+    def apply_transforms(self, data, label):
         if self.transform:
             data = self.transform(data)
         if self.target_transform:
             label = self.target_transform(label)
-        if isinstance(data, torch.Tensor):
-            if len(data.shape) == 2:
-                data = data.unsqueeze(0)
         return data, label
-
-
-
-

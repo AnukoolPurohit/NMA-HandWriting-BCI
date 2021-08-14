@@ -32,7 +32,7 @@ def test_file(test_path):
 
 @pytest.fixture()
 def test_data(test_alphabet):
-    number_of_data_points = random.randint(1, 11)
+    number_of_data_points = random.randint(2, 12)
     labels = random.choices(test_alphabet, k=number_of_data_points)
     return np.random.randn(number_of_data_points, 201, 192), labels
 
