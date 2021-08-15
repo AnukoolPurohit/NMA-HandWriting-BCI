@@ -1,5 +1,7 @@
-import numpy as np
-from scipy.io import loadmat
+import torch
 
+DEVICE = "cpu"
+if torch.cuda.is_available():
+    DEVICE = "cuda"
 
 

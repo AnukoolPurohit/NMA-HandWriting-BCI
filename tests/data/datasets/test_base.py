@@ -2,7 +2,6 @@ import random
 import pytest
 from tests.macros import test_transforms
 from handwritingBCI.data.datasets.base import BaseDataset
-from handwritingBCI.data.datasets import NeuroDataset
 
 
 class TestBaseDataset:
