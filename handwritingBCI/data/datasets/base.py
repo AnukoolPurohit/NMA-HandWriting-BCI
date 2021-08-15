@@ -3,7 +3,7 @@ from handwritingBCI.data.utils.files import get_dataset
 from handwritingBCI.data.utils.transforms import get_cnn_transforms
 
 
-class NeuroDataset(Dataset):
+class BaseDataset(Dataset):
     def __init__(self, data, target,
                  transform=None,
                  target_transform=None):

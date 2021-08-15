@@ -1,10 +1,11 @@
 import random
 import pytest
 from tests.macros import test_transforms
-from handwritingBCI.data.dataset import NeuroDataset
+from handwritingBCI.data.datasets.base import BaseDataset
+from handwritingBCI.data.datasets import NeuroDataset
 
 
-class TestNeuroDataset:
+class TestBaseDataset:
     def test_len(self, test_data):
         data, _ = test_data
         neuro_dataset = self.get_neuro_dataset(test_data)
@@ -36,18 +37,11 @@ class TestNeuroDataset:
         assert trial_label == target_transform(label[trial])
         return
 
-    def test_from_path(self, test_path):
-        neuro_dataset = NeuroDataset.from_path(test_path)
-        trial = random.randint(0, len(neuro_dataset)-1)
-        trial_data, trial_label = neuro_dataset[trial]
-
-        assert len(neuro_dataset) == 3100
-        assert trial_data.shape == (1, 201, 192)
-        assert isinstance(trial_label, int)
-        return
-
     @staticmethod
     def get_neuro_dataset(test_data, transform=None, target_transform=None):
         data, labels = test_data
-        neuro_dataset = NeuroDataset(data, labels, transform, target_transform)
+        neuro_dataset = BaseDataset(data, labels, transform, target_transform)
         return neuro_dataset
+
+
+

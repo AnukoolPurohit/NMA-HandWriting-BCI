@@ -1,1 +1,1 @@
-from .dataset import NeuroDataset
+from handwritingBCI.data.datasets.base import BaseDataset
