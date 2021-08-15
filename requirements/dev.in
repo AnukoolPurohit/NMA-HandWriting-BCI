@@ -5,4 +5,5 @@ wandb
 jupyterlab
 notebook
 scikit-learn
+ipywidgets
 jedi==0.17.2
