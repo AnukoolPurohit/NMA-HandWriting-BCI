@@ -11,3 +11,10 @@ test_transforms = [
     (np.max, str.isalpha),
     (type, type)
 ]
+
+macro_image_sizes = [
+    ((100, 100), (50, 50)),
+    ((201, 196), (100, 98)),
+    ((50, 50), (25, 25)),
+    ((137, 299), (68, 149))
+]
