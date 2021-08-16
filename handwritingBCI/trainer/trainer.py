@@ -24,34 +24,22 @@ class Trainer:
         self.optimizer = self.optimizer(self.model.parameters(), lr=self.lr)
         self.device = device
         if logger is None:
-            self.logger = Logger()
+            self.logger = Logger(self)
+
+        # Placeholders
+        self.loss = 0.
+        self.predictions = 0.
+        self.xb: torch.Tensor = torch.tensor([0.])
+        self.yb: torch.Tensor = torch.tensor([0.])
         return
 
-    def one_batch(self, xb: torch.Tensor, yb: torch.Tensor):
-        xb, yb = xb.to(self.device), yb.to(self.device)
-
-        if self.model.training:
-            self.optimizer.zero_grad()
-
-        predictions = self.model(xb)
-        loss = self.loss_func(predictions, yb)
-        self.logger.update_loss(self.model.training, loss.cpu().detach())
-
-        if self.model.training:
-            loss.backward()
-            self.optimizer.step()
-
-        return
-
-    def all_batches(self):
-        if self.model.training:
-            dl = self.data.train_dl
-        else:
-            dl = self.data.valid_dl
-
-        for xb, yb in tqdm(dl, leave=False):
-            self.one_batch(xb, yb)
-        return
+    def tune(self, epochs: int = 5):
+        self.model.to(self.device)
+        self.loss_func.to(self.device)
+        for epoch in tqdm(range(epochs)):
+            self.train_mode()
+            self.valid_mode()
+            self.logger.epoch_complete()
 
     def train_mode(self):
         self.model.train()
@@ -63,10 +51,32 @@ class Trainer:
         with torch.no_grad():
             self.all_batches()
 
-    def tune(self, epochs: int = 5):
-        self.model.to(self.device)
-        self.loss_func.to(self.device)
-        for epoch in tqdm(range(epochs)):
-            self.train_mode()
-            self.valid_mode()
-            self.logger.epoch_complete()
+    def all_batches(self):
+        if self.model.training:
+            dl = self.data.train_dl
+        else:
+            dl = self.data.valid_dl
+
+        for xb, yb in tqdm(dl, leave=False):
+            self.xb, self.yb = xb, yb
+            self.one_batch()
+        return
+
+    def one_batch(self):
+        self.xb, self.yb = self.xb.to(self.device), self.yb.to(self.device)
+
+        if self.model.training:
+            self.optimizer.zero_grad()
+
+        self.predictions = self.model(self.xb)
+        self.loss = self.loss_func(self.predictions, self.yb)
+        self.logger.update()
+
+        if self.model.training:
+            self.loss.backward()
+            self.optimizer.step()
+
+        return
+
+
+
