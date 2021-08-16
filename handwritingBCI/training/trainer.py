@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from tqdm.auto import tqdm
-from handwritingBCI.trainer.logger import Logger
+from handwritingBCI.training.logger import Logger
 from handwritingBCI.utils import DEVICE
 from handwritingBCI.data.databunch import Databunch
 
@@ -36,7 +36,9 @@ class Trainer:
     def tune(self, epochs: int = 5):
         self.model.to(self.device)
         self.loss_func.to(self.device)
-        for epoch in tqdm(range(epochs)):
+        progress_bar = tqdm(range(epochs))
+        for epoch in progress_bar:
+            progress_bar.set_description(f"Epoch: {epoch}")
             self.train_mode()
             self.valid_mode()
             self.logger.epoch_complete()
@@ -56,8 +58,9 @@ class Trainer:
             dl = self.data.train_dl
         else:
             dl = self.data.valid_dl
-
-        for xb, yb in tqdm(dl, leave=False):
+        progress_bar = tqdm(dl, leave=False)
+        for xb, yb in progress_bar:
+            progress_bar.set_description(f"Loss: {self.loss:.2f}")
             self.xb, self.yb = xb, yb
             self.one_batch()
         return

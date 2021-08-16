@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from handwritingBCI.metrics import Metrics, Loss, Accuracy
+from handwritingBCI.training.metrics import Metrics, Loss, Accuracy
 
 
 class Logger:
