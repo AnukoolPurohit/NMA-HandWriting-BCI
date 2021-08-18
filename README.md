@@ -1,6 +1,6 @@
 # **Neuromatch Academy - Deep Learning 2021 Project**
 
-[AnukoolPurohit](https://github.com/AnukoolPurohit), [Ahmed Alramly](https://github.com/ahmedramly), [Prakriti Nayak](https://github.com/PrakritiNayak)  
+[Anukool Purohit](https://github.com/AnukoolPurohit), [Ahmed Alramly](https://github.com/ahmedramly), [Prakriti Nayak](https://github.com/PrakritiNayak)  
 
 
 ## _**Title**_
