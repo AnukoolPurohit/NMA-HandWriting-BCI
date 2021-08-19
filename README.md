@@ -3,7 +3,7 @@
 [Anukool Purohit](https://github.com/AnukoolPurohit), [Ahmed Alramly](https://github.com/ahmedramly), [Prakriti Nayak](https://github.com/PrakritiNayak)  
 
 
-## _**Title**_
+## _**Decoding neural activity of handwriting planning in the motor cortex**_
 ### **Abstract**
 
 Brain Computer Interfaces (BCIs) have the ability to revolutionize rehabilitation of quadriplegic, paralyzed, or those who have otherwise lost the ability to perform fine motor activities. Yet, current BCI systems focus more on decoding gross movements from the neural activity and less on sequential movements like handwriting. In this study, we will attempt to build an algorithm to decode the neural activity implicit in handwriting planning in the motor cortex. 
