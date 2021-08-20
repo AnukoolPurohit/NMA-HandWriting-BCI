@@ -35,7 +35,8 @@ class Trainer:
 
     def tune(self, epochs: int = 5):
         self.model.to(self.device)
-        self.loss_func.to(self.device)
+        if isinstance(self.loss_func, nn.Module):
+            self.loss_func.to(self.device)
         progress_bar = tqdm(range(epochs))
         for epoch in progress_bar:
             progress_bar.set_description(f"Epoch: {epoch}")

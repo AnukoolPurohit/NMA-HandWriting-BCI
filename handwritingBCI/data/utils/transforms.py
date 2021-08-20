@@ -8,5 +8,11 @@ def get_cnn_transforms(labels):
     return cnn_transforms, LabelEncoder(labels)
 
 
+def simple_transform(data):
+    data = torch.tensor(data)
+    data = data.float()
+    return data
+
+
 def get_simple_transforms(labels):
-    return torch.tensor, LabelEncoder(labels)
+    return simple_transform, LabelEncoder(labels)

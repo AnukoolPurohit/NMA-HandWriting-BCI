@@ -31,3 +31,13 @@ class NeuroDataset(BaseDataset):
                                           generator=generator)
         return train_ds, valid_ds
 
+
+class SeqRNNDataset(NeuroDataset):
+    def __getitem__(self, index):
+        data = self.data[index]
+        data1 = data[:, :96]
+        data2 = data[:, 96:]
+        if self.transform:
+            data1 = self.transform(data1)
+            data2 = self.transform(data2)
+        return data1, data2

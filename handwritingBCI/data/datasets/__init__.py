@@ -1,1 +1,1 @@
-from .core import NeuroDataset
+from .core import NeuroDataset, SeqRNNDataset

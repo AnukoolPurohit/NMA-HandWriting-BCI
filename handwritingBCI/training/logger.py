@@ -3,7 +3,7 @@ from handwritingBCI.training.metrics import Metrics, Loss, Accuracy
 
 
 class Logger:
-    def __init__(self, trainer, metrics: list = [Loss, Accuracy]):
+    def __init__(self, trainer, metrics: list = [Loss]):
         self.trainer = trainer
         self.epoch = 0
         self.train_metrics = Metrics(self.trainer, metrics)
