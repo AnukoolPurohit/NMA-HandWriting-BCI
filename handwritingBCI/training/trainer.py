@@ -1,8 +1,9 @@
 import torch
 from torch import nn
 from tqdm.auto import tqdm
-from handwritingBCI.training.logger import Logger
 from handwritingBCI.utils import DEVICE
+from handwritingBCI.training.metrics import Loss
+from handwritingBCI.training.logger import Logger
 from handwritingBCI.data.databunch import Databunch
 
 
@@ -14,6 +15,7 @@ class Trainer:
                  optimizer: str = "Adam",
                  device=DEVICE,
                  logger=None,
+                 metrics=[Loss],
                  ) -> None:
 
         self.data = data
@@ -24,7 +26,7 @@ class Trainer:
         self.optimizer = self.optimizer(self.model.parameters(), lr=self.lr)
         self.device = device
         if logger is None:
-            self.logger = Logger(self)
+            self.logger = Logger(self, metrics=metrics)
 
         # Placeholders
         self.loss = 0.

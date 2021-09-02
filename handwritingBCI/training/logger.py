@@ -3,7 +3,7 @@ from handwritingBCI.training.metrics import Metrics, Loss, Accuracy
 
 
 class Logger:
-    def __init__(self, trainer, metrics: list = [Loss]):
+    def __init__(self, trainer, metrics: list):
         self.trainer = trainer
         self.epoch = 0
         self.train_metrics = Metrics(self.trainer, metrics)
@@ -38,6 +38,6 @@ class Logger:
         plt.axvline(0, color="black")
         plt.title(f"Training vs Validation {metric.title()}", size=text_size)
         plt.xlabel("Epochs", size=text_size)
-        plt.ylabel("Cross Validation Loss", size=text_size)
+        plt.ylabel(f"Cross Validation {metric.title()}", size=text_size)
         plt.legend([f"Training {metric.title()}", f"Validation {metric.title()}"])
         plt.show()
