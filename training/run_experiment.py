@@ -16,7 +16,7 @@ batch_size = 32
 test_size = 0.1
 
 data = Databunch.from_neuro_dataset(neuro_dataset, test_size=test_size, batch_size=batch_size)
-model = SimpleRNN(192, 64, 31)
+model = SimpleRNN(input_size=192, hidden_size=64, output_size=31, num_layers=1, bidirectional=False)
 
 epochs = 100
 lr = 1e-3

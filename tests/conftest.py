@@ -63,6 +63,6 @@ def test_labels(test_alphabet):
                     'questionMark',
                     ]
     categories = test_alphabet + extra_labels
-    labels = categories*10
+    labels = categories * 10
     random.shuffle(labels)
     return categories, labels
